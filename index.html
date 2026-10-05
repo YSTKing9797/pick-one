@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>50/50 Challenge</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================================
+       EFFECTS
+  ========================================== -->
+
+  <div id="flash" class="flash"></div>
+
+  <div
+    id="successBanner"
+    class="success-banner"
+  >
+    SUCCESS!
+  </div>
+
+
+  <!-- =========================================
+       MAIN GAME
+  ========================================== -->
+
+  <main class="game">
+
+    <!-- HEADER -->
+
+    <div class="daily-label" data-i18n="dailyLabel">
+      DAILY CHALLENGE
+    </div>
+
+    <div
+      id="dailyNumber"
+      class="daily-number"
+    >
+      🌎 DAILY #000
+    </div>
+
+    <h1>
+      🪙
+      <span data-i18n="title">
+        50% CHALLENGE
+      </span>
+    </h1>
+
+    <p
+      id="description"
+      class="description"
+    >
+      Everyone gets the same challenge today.<br>
+      Keep choosing correctly and see how far you can go.
+    </p>
+
+
+    <!-- LANGUAGE BUTTON -->
+
+    <button
+      id="languageButton"
+      class="language-button"
+      type="button"
+    >
+      🇯🇵 日本語にする
+    </button>
+
+
+    <!-- =========================================
+         STATS
+    ========================================== -->
+
+    <section class="stats">
+
+      <div class="stat-card">
+
+        <div
+          class="stat-label"
+          data-i18n="probabilityLabel"
+        >
+          CHANCE OF GETTING THIS FAR
+        </div>
+
+        <div
+          id="probability"
+          class="stat-value"
+        >
+          100%
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div
+          class="stat-label"
+          data-i18n="streakLabel"
+        >
+          CORRECT IN A ROW
+        </div>
+
+        <div
+          id="streak"
+          class="stat-value"
+        >
+          0
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ROUND
+    ========================================== -->
+
+    <div
+      id="round"
+      class="round"
+    >
+      ROUND 1
+    </div>
+
+
+    <!-- =========================================
+         COIN
+    ========================================== -->
+
+    <section class="coin-area">
+
+      <div
+        id="coinGlow"
+        class="coin-glow"
+      ></div>
+
+      <div
+        id="coin"
+        class="coin"
+      >
+        ?
+      </div>
+
+      <div
+        id="result"
+        class="result"
+      >
+        HEADS OR TAILS?
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         QUESTION
+    ========================================== -->
+
+    <div
+      id="question"
+      class="question"
+    >
+      Predict the fate
+    </div>
+
+
+    <!-- =========================================
+         CHOICES
+    ========================================== -->
+
+    <div class="choices">
+
+      <button
+        id="headsButton"
+        class="choice heads-choice"
+        type="button"
+      >
+        🟡
+        <span data-i18n="heads">
+          HEADS
+        </span>
+      </button>
+
+
+      <button
+        id="tailsButton"
+        class="choice tails-choice"
+        type="button"
+      >
+        ⚪
+        <span data-i18n="tails">
+          TAILS
+        </span>
+      </button>
+
+    </div>
+
+
+    <!-- =========================================
+         HINT
+    ========================================== -->
+
+    <button
+      id="hintButton"
+      class="hint-button"
+      type="button"
+    >
+      🔮
+      <span data-i18n="hintButton">
+        ELIMINATE ONE WRONG CHOICE
+      </span>
+    </button>
+
+
+    <div
+      id="hintResult"
+      class="hint-result"
+    ></div>
+
+
+    <!-- =========================================
+         FLIP
+    ========================================== -->
+
+    <button
+      id="flipButton"
+      class="flip-button"
+      type="button"
+      disabled
+    >
+      SELECT HEADS OR TAILS
+    </button>
+
+
+    <!-- =========================================
+         MESSAGE
+    ========================================== -->
+
+    <div
+      id="message"
+      class="message"
+    >
+      Today's challenge is determined by the date.
+    </div>
+
+
+    <!-- =========================================
+         GAME OVER
+    ========================================== -->
+
+    <section
+      id="gameOver"
+      class="game-over"
+    >
+
+      <div class="game-over-title">
+        GAME OVER
+      </div>
+
+      <div
+        id="gameOverSub"
+        class="game-over-sub"
+      >
+        THE 50% WALL WON
+      </div>
+
+
+      <div
+        id="finalScore"
+        class="final-score"
+      ></div>
+
+
+      <!-- SHARE -->
+
+      <div
+        id="shareArea"
+        class="share-area"
+      >
+
+        <div
+          class="share-title"
+          data-i18n="shareTitle"
+        >
+          SHARE YOUR RESULT
+        </div>
+
+        <button
+          id="shareButton"
+          class="share-button"
+          type="button"
+        >
+          📤
+          <span data-i18n="shareButton">
+            SHARE RESULT
+          </span>
+        </button>
+
+        <div
+          id="shareStatus"
+          class="share-status"
+        ></div>
+
+      </div>
+
+
+      <!-- RESTART -->
+
+      <button
+        id="restartButton"
+        class="restart-button"
+        type="button"
+      >
+        🔄
+        <span data-i18n="restart">
+          PLAY AGAIN
+        </span>
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
+  <script src="script.js"></script>
+
+</body>
+</html>
