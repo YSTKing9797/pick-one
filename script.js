@@ -47,24 +47,98 @@ function getDailyNumber() {
    ONE PLAY PER DAY
 ========================================= */
 
-const PLAYED_KEY =
-  "50challenge_played_date";
+const PLAY_COUNT_KEY =
+  "50challenge_play_count";
+
+const PLAY_COUNT_DATE_KEY =
+  "50challenge_play_count_date";
+
+const DAILY_PLAY_LIMIT =
+  1;
+
+
+function getTodayPlayCount() {
+
+  const today =
+    getTodayString();
+
+  const savedDate =
+    localStorage.getItem(
+      PLAY_COUNT_DATE_KEY
+    );
+
+
+  if (
+    savedDate !== today
+  ) {
+
+    return 0;
+
+  }
+
+
+  return Number(
+    localStorage.getItem(
+      PLAY_COUNT_KEY
+    )
+  ) || 0;
+
+}
 
 
 function hasPlayedToday() {
+
   return (
-    localStorage.getItem(PLAYED_KEY) ===
-    getTodayString()
+    getTodayPlayCount() >=
+    DAILY_PLAY_LIMIT
   );
+
 }
 
 
 function markPlayedToday() {
+
+  const today =
+    getTodayString();
+
+  const savedDate =
+    localStorage.getItem(
+      PLAY_COUNT_DATE_KEY
+    );
+
+
+  let count;
+
+
+  if (
+    savedDate !== today
+  ) {
+
+    count = 0;
+
+  } else {
+
+    count =
+      getTodayPlayCount();
+
+  }
+
+
+  count++;
+
+
   localStorage.setItem(
-    PLAYED_KEY,
-    getTodayString()
+    PLAY_COUNT_DATE_KEY,
+    today
   );
+
+  localStorage.setItem(
+    PLAY_COUNT_KEY,
+    count
+  );
+
 }
+
 
 
 /* =========================================
@@ -869,8 +943,8 @@ hintButton.addEventListener(
 
     const wrongAnswer =
       correctAnswer === "heads"
-        ? "HEADS"
-        : "TAILS";
+        ? "tails"
+        : "heads";
 
 
     hintUsed =
@@ -887,7 +961,7 @@ hintButton.addEventListener(
     ) {
 
       const japaneseWrong =
-        wrongAnswer === "HEADS"
+        wrongAnswer === "heads"
           ? "表"
           : "裏";
 
@@ -897,8 +971,14 @@ hintButton.addEventListener(
 
     } else {
 
+      const englishWrong =
+        wrongAnswer === "heads"
+          ? "HEADS"
+          : "TAILS";
+
+
       hintResult.textContent =
-        `🔮 The wrong answer is ${wrongAnswer}`;
+        `🔮 The wrong answer is ${englishWrong}`;
 
     }
 
@@ -919,6 +999,7 @@ hintButton.addEventListener(
 
   }
 );
+
 
 
 /* =========================================
@@ -1135,14 +1216,12 @@ flipButton.addEventListener(
         else {
 
           /*
-
              ここで初めて
              「今日プレイした」と記録。
 
              つまり途中で何回正解しても、
              最後に間違えた時点で
              その日のプレイが終了する。
-
           */
 
           markPlayedToday();
